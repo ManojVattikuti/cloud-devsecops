@@ -1,0 +1,78 @@
+# Welcome to Serverless!
+#
+# This file is the main config file for your service.
+# It's very minimal at this point and uses default values.
+# You can always add more config options for more control.
+# We've included some commented out config examples here.
+# Just uncomment any of them to get that config option.
+#
+# For full config options, check the docs:
+#    docs.serverless.com
+#
+# Happy Coding!
+
+service: ebs-encryption # NOTE: update this with your service name
+
+# You can pin your service to only deploy with a specific Serverless version
+# Check out our docs for more details
+# frameworkVersion: "=X.X.X"
+
+provider:
+  name: aws
+  runtime: python3.7
+  profile: xxxxxxxx #Change for local profile account
+  stage: xxxxxx # Optional
+  timeout: 900
+  memorySize: 512
+  stackTags: # Optional CF stack tags poc
+    solutionowner: manoj.awsdeveloper@gmail.com
+    technicalcontact: manoj.awsdeveloper@gmail.com
+    whobuilt: manoj.awsdeveloper@gmail.com
+
+#This can be more granular and restricted to specific actions required.
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+      - ec2:*
+      Resource: "*"
+    - Effect: Allow
+      Action:
+      - ses:SendEmail
+      - ses:SendRawEmail
+      Resource: "*"
+    - Effect: Allow
+      Action:
+      - logs:*
+      Resource: "*"
+    - Action:
+      - sns:*
+      Effect: Allow
+      Resource: "*"
+    - Effect: Allow
+      Action: "lambda:*"
+      Resource: "*"
+    - Effect: Allow
+      Action: iam:PassRole
+      Resource: arn:aws:iam::*:role/AWS_Events_Invoke_Targets
+
+functions:
+  ebsencryption:
+    handler: handler.lambda_handler
+    events:
+     - cloudwatchEvent:
+         event:
+          source:
+              - aws.ec2
+          detail-type:
+              - 'AWS API Call via CloudTrail'
+          detail:
+              eventSource: [ec2.amazonaws.com]
+              eventName: [AttachVolume]
+     - cloudwatchEvent:
+         event:
+          source:
+              - aws.ec2
+          detail-type:
+              - 'EBS Volume Notification'
+          detail:
+              event: [createVolume]
