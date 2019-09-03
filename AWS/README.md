@@ -2,10 +2,11 @@
 * Architecture design and implementation of auto-remediation of public cloud (AWS) security anti-patterns.
 
 ### Architecture 
-![Devsecops-AWS](https://github.com/ManojVattikuti/cloud-devsecops/blob/master/AWS/devsecops-aws.png)
+![Devsecops-AWS](https://github.com/ManojVattikuti/cloud-devsecops/blob/master/AWS/AWS_Security/devsecops-aws.png)
 
 
 ### Prerequisites
+
 Here is some of the software required to install locally on the laptop
 
 ```
