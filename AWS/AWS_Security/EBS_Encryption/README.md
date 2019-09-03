@@ -4,8 +4,7 @@
 * To make sure all Volumes are encrypted at rest in AWS we can have this lambda function deployed across regions
 
 ### Architecture 
-![AWS-ebs-encryption](https://github.com/ManojVattikuti/cloud-devsecops/tree/master/AWS/AWS_Security/EBS_Encryption/ebs-encryption.png)
-
+![AWS-ebs-encryption](https://github.com/ManojVattikuti/cloud-devsecops/blob/master/AWS/AWS_Security/EBS_Encryption/ebs-encryption.png)
 
 # Work Flow
 * When EBS Volumes are created or Attached, A cloud watch event triggers the lambda function

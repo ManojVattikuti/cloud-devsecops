@@ -4,7 +4,6 @@
 ### Architecture 
 ![Devsecops-AWS](https://github.com/ManojVattikuti/cloud-devsecops/blob/master/AWS/devsecops-aws.png)
 
-
 ### Prerequisites
 
 Here is some of the software required to install locally on the laptop
